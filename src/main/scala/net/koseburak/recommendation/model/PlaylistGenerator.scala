@@ -10,8 +10,8 @@ trait Generator {
   def model: PlaylistModel
 }
 
-class PlaylistGenerator(vectorSize: Int = 125, windowSize: Int = 50)
-                       (implicit spark: SparkSession) extends Generator {
+case class PlaylistGenerator(vectorSize: Int = 50, windowSize: Int = 125)
+                            (implicit spark: SparkSession) extends Generator {
   private val trainDF = DataUtils.prepareData(trainCompletePath)
   override val model: PlaylistModel = {
     val model = new Word2Vec()
